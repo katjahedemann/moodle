@@ -69,12 +69,12 @@ class mod_moodleoverflow_post_form extends moodleform {
             $modform->addHelpButton('attachments', 'attachment', 'moodleoverflow');
         }
 
-        // The Tags (added 2022 Katja Hedemann)
+        // added form for tags (2022 Katja Hedemann)
         $modform->addElement('header', 'tagshdr', get_string('tags', 'tag'));
  
         $modform->addElement('tags', 'tags', get_string('tags'),
                 array('itemtype' => 'moodleoverflow_posts', 'component' => 'mod_moodleoverflow'));
- 
+        // tags are required
         $modform->addRule('tags', get_string('required'), 'required', null,'client');
 
         // Submit buttons.
@@ -127,7 +127,8 @@ class mod_moodleoverflow_post_form extends moodleform {
         if (empty($data['subject'])) {
             $errors['subject'] = get_string('erroremptysubject', 'moodleoverflow');
         }
-
+        
+        // added error message for empty tags (2022 Katja Hedemann)
         if (empty($data['tags'])) {
             $errors['tags'] = get_string('erroremptytags', 'moodleoverflow');
         }
